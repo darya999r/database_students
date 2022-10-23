@@ -1,14 +1,3 @@
-#функционал:
-    # доб ученика
-    # удалить ученика
-    # выборка
-        # все ученики класса
-        # все отличники(хорошисты, троечники)
-        # именинники месяца
-        # по фио номер тел
-        # вся информациипо фио
-        # по фио класс руковод???
-
 from easygui import *
 import control as ctrl
 
@@ -18,7 +7,7 @@ ctrl.load()
 while True:
     if lvl == 0:
         msg = "Выберите дальнейшее действие: "
-        title = "Информация об учениках школы № 15"
+        title = "Информация об учениках школы № ?"
         choices = ['Добавить информацию об ученике', 'Удалить информацию об ученике', 'Редактировать информацию об ученике', 'Поиск информации']
         choice = choicebox(msg, title, choices)
         if choice == choices[0]:
@@ -97,7 +86,8 @@ while True:
         if sample1 == None:
             lvl = 3
         else:
-            pass
+            msgbox(ctrl.search_info_stud(sample1), 'Отчет')
+            lvl = 0
     elif lvl == 5:
         msg = "Введите ФИО ученика: "
         title = "Классный руководитель ученика"
@@ -107,7 +97,8 @@ while True:
         if sample2 == None:
             lvl = 3
         else:
-            pass
+            msgbox(f'Классный руководитель - {ctrl.search_info_classroom_teacher_stud(sample2)}', 'Отчет')
+            lvl = 0
     elif lvl == 6:
         msg = "Введите ФИО ученика: "
         title = "Телефон родителя"
@@ -117,7 +108,8 @@ while True:
         if sample3 == None:
             lvl = 3
         else:
-            pass
+            msgbox(f'Телефон родителя - {ctrl.search_info_phone_perents_stud(sample3)}', 'Отчет')
+            lvl = 0
     elif lvl == 7:
         msg = "Введите класс: "
         title = "Ученики класса"
@@ -127,17 +119,21 @@ while True:
         if sample4 == None:
             lvl = 3
         else:
-            pass
+            msgbox(ctrl.search_info_class_stud(sample4), 'Ученики класса')
+            lvl = 0
     elif lvl == 8:
         msg = "Введите месяц: "
         title = "Именинники месяца"
         fieldNames  =  ["Месяц"]
         sample5 = []
         sample5 = multenterbox(msg, title, fieldNames)
+        print(sample5)
+        print(type(sample5[0]))
         if sample5 == None:
             lvl = 3
         else:
-            pass
+            msgbox(ctrl.search_info_birthday_mounth_stud(sample5[0]), 'Именнинники месяца')
+            lvl = 0
     elif lvl == 9:
         msg = "Выберите категорию: "
         title = "Выборка по успеваемости"
@@ -146,11 +142,14 @@ while True:
         if score == None:
             lvl = 3
         elif score == choices[0]:
-            pass
+            msgbox(ctrl.search_five_stud(), 'Отличники')
+            lvl = 0
         elif score == choices[1]:
-            pass
+            msgbox(ctrl.search_four_stud(), 'Хорошисты')
+            lvl = 0
         elif score == choices[2]:
-            pass
+            msgbox(ctrl.search_three_stud(), 'Троечники')
+            lvl = 0
     elif lvl == 10:
         msg = "Выберите данные для редактирования: "
         title = "Редактирование данных об ученике"
@@ -168,7 +167,3 @@ while True:
             else:
                 msgbox(ctrl.edit_stud(ch_stud,overwriting,edit_stud), 'Отчет')
                 lvl = 2
-
-
-    
-    
